@@ -1,5 +1,5 @@
 import jsonp from 'common/js/jsonp'
-import {commonParams, options} from './config'
+import { commonParams, options } from './config'
 import axios from 'axios'
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -32,11 +32,13 @@ export function getDiscList() {
     format: 'json'
   })
 
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
-  })
+  return axios
+    .get(url, {
+      params: data
+    })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
 }
 
 export function getSongList(disstid) {
@@ -53,9 +55,11 @@ export function getSongList(disstid) {
     needNewCode: 0
   })
 
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
-  })
+  return axios
+    .get(url, {
+      params: data
+    })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
 }

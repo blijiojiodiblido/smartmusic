@@ -18,11 +18,13 @@ export function getLyric(mid) {
     format: 'json'
   })
 
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
-  })
+  return axios
+    .get(url, {
+      params: data
+    })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
 }
 
 export function getSongsUrl(songs) {
@@ -31,7 +33,7 @@ export function getSongsUrl(songs) {
   let mids = []
   let types = []
 
-  songs.forEach((song) => {
+  songs.forEach(song => {
     mids.push(song.mid)
     types.push(0)
   })
@@ -50,27 +52,29 @@ export function getSongsUrl(songs) {
     let tryTime = 3
 
     function request() {
-      return axios.post(url, {
-        comm: data,
-        url_mid: urlMid
-      }).then((response) => {
-        const res = response.data
-        if (res.code === ERR_OK) {
-          let urlMid = res.url_mid
-          if (urlMid && urlMid.code === ERR_OK) {
-            const info = urlMid.data.midurlinfo[0]
-            if (info && info.purl) {
-              resolve(res)
+      return axios
+        .post(url, {
+          comm: data,
+          url_mid: urlMid
+        })
+        .then(response => {
+          const res = response.data
+          if (res.code === ERR_OK) {
+            let urlMid = res.url_mid
+            if (urlMid && urlMid.code === ERR_OK) {
+              const info = urlMid.data.midurlinfo[0]
+              if (info && info.purl) {
+                resolve(res)
+              } else {
+                retry()
+              }
             } else {
               retry()
             }
           } else {
             retry()
           }
-        } else {
-          retry()
-        }
-      })
+        })
     }
 
     function retry() {
@@ -89,7 +93,7 @@ function genUrlMid(mids, types) {
   const guid = getUid()
   return {
     module: 'vkey.GetVkeyServer',
-    method: "CgiGetVkey",
+    method: 'CgiGetVkey',
     param: {
       guid,
       songmid: mids,

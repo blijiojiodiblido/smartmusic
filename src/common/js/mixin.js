@@ -1,12 +1,10 @@
-import {mapGetters, mapMutations, mapActions} from 'vuex'
-import {playMode} from 'common/js/config'
-import {shuffle} from 'common/js/util'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { playMode } from 'common/js/config'
+import { shuffle } from 'common/js/util'
 
 export const playlistMixin = {
   computed: {
-    ...mapGetters([
-      'playlist'
-    ])
+    ...mapGetters(['playlist'])
   },
   mounted() {
     this.handlePlaylist(this.playlist)
@@ -29,15 +27,13 @@ export const playlistMixin = {
 export const playerMixin = {
   computed: {
     iconMode() {
-      return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+      return this.mode === playMode.sequence
+        ? 'icon-sequence'
+        : this.mode === playMode.loop
+          ? 'icon-loop'
+          : 'icon-random'
     },
-    ...mapGetters([
-      'sequenceList',
-      'playlist',
-      'currentSong',
-      'mode',
-      'favoriteList'
-    ]),
+    ...mapGetters(['sequenceList', 'playlist', 'currentSong', 'mode', 'favoriteList']),
     favoriteIcon() {
       return this.getFavoriteIcon(this.currentSong)
     }
@@ -56,7 +52,7 @@ export const playerMixin = {
       this.setPlaylist(list)
     },
     resetCurrentIndex(list) {
-      let index = list.findIndex((item) => {
+      let index = list.findIndex(item => {
         return item.id === this.currentSong.id
       })
       this.setCurrentIndex(index)
@@ -75,7 +71,7 @@ export const playerMixin = {
       return 'icon-not-favorite'
     },
     isFavorite(song) {
-      const index = this.favoriteList.findIndex((item) => {
+      const index = this.favoriteList.findIndex(item => {
         return item.id === song.id
       })
       return index > -1
@@ -86,10 +82,7 @@ export const playerMixin = {
       setCurrentIndex: 'SET_CURRENT_INDEX',
       setPlayingState: 'SET_PLAYING_STATE'
     }),
-    ...mapActions([
-      'saveFavoriteList',
-      'deleteFavoriteList'
-    ])
+    ...mapActions(['saveFavoriteList', 'deleteFavoriteList'])
   }
 }
 
@@ -101,9 +94,7 @@ export const searchMixin = {
     }
   },
   computed: {
-    ...mapGetters([
-      'searchHistory'
-    ])
+    ...mapGetters(['searchHistory'])
   },
   methods: {
     onQueryChange(query) {
@@ -119,9 +110,6 @@ export const searchMixin = {
     saveSearch() {
       this.saveSearchHistory(this.query)
     },
-    ...mapActions([
-      'saveSearchHistory',
-      'deleteSearchHistory'
-    ])
+    ...mapActions(['saveSearchHistory', 'deleteSearchHistory'])
   }
 }
