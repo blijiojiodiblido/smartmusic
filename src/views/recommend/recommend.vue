@@ -112,6 +112,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+// “~”符号指向“stylus-loader”包
+// “common”表示在“webpack.base.conf.js”文件中的“alias”选项自定义的文件路径
 @import '~common/stylus/variable'
 
 .recommend {
