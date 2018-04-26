@@ -20,6 +20,7 @@ export default {
     bgImage() {
       return this.singer.avatar
     },
+    // mapGetters在computed中使用，里面是一个数组。
     ...mapGetters(['singer'])
   },
   data() {

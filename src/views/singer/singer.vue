@@ -92,6 +92,7 @@ export default {
       })
       return hot.concat(ret)
     },
+    // mapMutations及mapActions均在methods中使用，mapMutations里面是一个对象,mapActions里面是个数组。
     ...mapMutations({
       setSinger: 'SET_SINGER'
     })
