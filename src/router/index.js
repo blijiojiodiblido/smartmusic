@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+// 组件异步加载，避免文件过大。
 const Recommend = () => import('views/recommend/recommend')
 const Singer = () => import('views/singer/singer')
 const Rank = () => import('views/rank/rank')
