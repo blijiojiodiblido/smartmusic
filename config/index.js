@@ -3,6 +3,8 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+// HOST值根据本地主机IP自行配置
+const HOST = require('./host.env')
 
 module.exports = {
   dev: {
@@ -12,7 +14,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.31.121', // can be overwritten by process.env.HOST
+    host: HOST, // can be overwritten by process.env.HOST
     port: 3030, // can be overwritten by process.env.HOST, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -44,7 +46,7 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false,
+    cssSourceMap: false
   },
 
   build: {
