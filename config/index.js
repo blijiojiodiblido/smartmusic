@@ -3,8 +3,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-// HOST值根据本地主机IP自行配置
-const HOST = require('./host.env')
 
 module.exports = {
   dev: {
@@ -14,7 +12,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: HOST, // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 3030, // can be overwritten by process.env.HOST, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
